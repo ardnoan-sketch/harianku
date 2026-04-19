@@ -1,0 +1,37 @@
+<x-app-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <x-ui.page-header title="Daftar Modul" :breadcrumbs="['Administrator', 'Modules']" />
+            <x-ui.alert type="success" />
+            <x-ui.alert type="error" />
+
+            <x-grid 
+                title="Daftar Modul Aplikasi" 
+                description="Setiap modul yang Anda buat di sini akan otomatis muncul sebagai kartu di halaman Portal, sesuai role yang ditetapkan."
+                createRoute="{{ route('admin.modules.create') }}"
+                createLabel="Tambah Modul"
+                :headers="['Order', 'Nama (key)', 'Label', 'Entry Route', 'Role Dibutuhkan', 'Status', 'Actions']"
+                :pagination="$modules"
+            >
+                @foreach($modules as $mod)
+                <tr class="hover:bg-gray-50 transition text-sm">
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-700">{{ $mod->order_no }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-900">{{ $mod->name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-900">{{ $mod->label }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-700">{{ $mod->entry_route }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-700">{{ $mod->required_role ?: '-' }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-700">{{ $mod->is_active ? 'Aktif' : 'Non-Aktif' }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap font-medium">
+                        <a href="{{ route('admin.modules.edit', $mod->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="bx bx-edit text-lg"></i></a>
+                        <form action="{{ route('admin.modules.destroy', $mod->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin hapus modul ini? Semua menu yang menggunakan modul ini di sidebar tidak akan tampil lagi.');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-900"><i class="bx bx-trash text-lg"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </x-grid>
+        </div>
+    </div>
+</x-app-layout>

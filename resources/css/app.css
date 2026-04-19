@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Theme tokens (shell: layout, header, sidebar, footer) --- */
+html[data-theme="light"] {
+    --font-ui: "Figtree", ui-sans-serif, system-ui, sans-serif;
+    --bg-body: #f9fafb;
+    --bg-main: #f3f4f6;
+    --bg-surface: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --border-subtle: #e5e7eb;
+    --header-bg: #ffffff;
+    --header-border: #e5e7eb;
+    --header-icon: #6b7280;
+    --header-icon-hover: #374151;
+    --header-icon-hover-bg: #f3f4f6;
+    --footer-bg: #ffffff;
+    --footer-border: #e5e7eb;
+    --footer-text: #6b7280;
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --accent-muted-bg: #eef2ff;
+    --portal-pill-bg: #eef2ff;
+    --portal-pill-text: #4f46e5;
+    --sidebar-bg: #111827;
+    --sidebar-border: #1f2937;
+    --sidebar-logo-border: #1f2937;
+    --sidebar-muted: #9ca3af;
+    --sidebar-input-bg: rgba(31, 41, 55, 0.8);
+    --sidebar-input-border: rgba(55, 65, 81, 0.5);
+    --sidebar-hover: #1f2937;
+    --sidebar-active: #4f46e5;
+    --sidebar-active-hover: #4338ca;
+    --table-row-hover: #f9fafb;
+    --user-avatar-bg: #e0e7ff;
+    --user-avatar-text: #4338ca;
+}
+
+html[data-theme="night"] {
+    --font-ui: "Figtree", ui-sans-serif, system-ui, sans-serif;
+    --bg-body: #020617;
+    --bg-main: #0f172a;
+    --bg-surface: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-subtle: #334155;
+    --header-bg: #0f172a;
+    --header-border: #1e293b;
+    --header-icon: #94a3b8;
+    --header-icon-hover: #e2e8f0;
+    --header-icon-hover-bg: #1e293b;
+    --footer-bg: #0f172a;
+    --footer-border: #1e293b;
+    --footer-text: #94a3b8;
+    --accent: #818cf8;
+    --accent-hover: #a5b4fc;
+    --accent-muted-bg: rgba(99, 102, 241, 0.15);
+    --portal-pill-bg: rgba(99, 102, 241, 0.2);
+    --portal-pill-text: #c7d2fe;
+    --sidebar-bg: #020617;
+    --sidebar-border: #1e293b;
+    --sidebar-logo-border: #1e293b;
+    --sidebar-muted: #64748b;
+    --sidebar-input-bg: rgba(15, 23, 42, 0.9);
+    --sidebar-input-border: #334155;
+    --sidebar-hover: #1e293b;
+    --sidebar-active: #4f46e5;
+    --sidebar-active-hover: #6366f1;
+    --table-row-hover: rgba(30, 41, 59, 0.6);
+    --user-avatar-bg: rgba(99, 102, 241, 0.25);
+    --user-avatar-text: #e0e7ff;
+}
+
+html[data-theme="retro"] {
+    --font-ui: "Press Start 2P", ui-monospace, monospace;
+    --bg-body: #1a0b2e;
+    --bg-main: #16082a;
+    --bg-surface: #240046;
+    --text-primary: #39ff14;
+    --text-secondary: #00ff9f;
+    --text-muted: #b794f6;
+    --border-subtle: #5f27cd;
+    --header-bg: #240046;
+    --header-border: #5f27cd;
+    --header-icon: #00ff9f;
+    --header-icon-hover: #39ff14;
+    --header-icon-hover-bg: #3d0066;
+    --footer-bg: #240046;
+    --footer-border: #5f27cd;
+    --footer-text: #b794f6;
+    --accent: #ff6b6b;
+    --accent-hover: #ff8787;
+    --accent-muted-bg: rgba(255, 107, 107, 0.15);
+    --portal-pill-bg: #3d0066;
+    --portal-pill-text: #39ff14;
+    --sidebar-bg: #0d0221;
+    --sidebar-border: #5f27cd;
+    --sidebar-logo-border: #5f27cd;
+    --sidebar-muted: #b794f6;
+    --sidebar-input-bg: #240046;
+    --sidebar-input-border: #5f27cd;
+    --sidebar-hover: #3d0066;
+    --sidebar-active: #ff6b6b;
+    --sidebar-active-hover: #ff8787;
+    --table-row-hover: rgba(95, 39, 205, 0.25);
+    --user-avatar-bg: #3d0066;
+    --user-avatar-text: #39ff14;
+}
+
+html[data-theme="retro"] body {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+html[data-theme="retro"] .theme-retro-scanlines {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.12),
+        rgba(0, 0, 0, 0.12) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
