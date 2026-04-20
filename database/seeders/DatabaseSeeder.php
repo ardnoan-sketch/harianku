@@ -15,12 +15,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(ThemeModeSeeder::class);
+        // 1. Core Data
+        $this->call([
+            ThemeModeSeeder::class,
+            ModuleSeeder::class,
+            MenuSeeder::class,
+            RoleSeeder::class,
+        ]);
 
+        // 2. Dummy Data for Development
         $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => bcrypt('password'),
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
         ]);
 
         $categories = \App\Models\Category::factory(5)->create([
@@ -34,4 +41,5 @@ class DatabaseSeeder extends Seeder
             ]);
         }
     }
+
 }

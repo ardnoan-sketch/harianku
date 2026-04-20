@@ -1,0 +1,31 @@
+STANDAR PENGEMBANGAN PROYEK HARIANKU
+===================================
+
+1. PENAMAAN DATABASE
+   - Semua tabel harus menggunakan prefix `ar_`.
+     Contoh: `ar_users`, `ar_categories`, `ar_theme_modes`, `ar_transactions`.
+   - Model yang menggunakan tabel dengan prefix ini harus mendefinisikan properti `$table`.
+     Contoh: `protected $table = 'ar_users';`
+
+2. KOMPONEN UI (BLADE)
+   - Gunakan komponen yang sudah ada di `resources/views/components`.
+   - Hindari penggunaan warna hardcoded Tailwind (seperti `bg-white`, `text-gray-800`) di dalam komponen.
+   - Gunakan variabel CSS tema:
+     - Background: `bg-[var(--bg-surface)]`
+     - Text Primary: `text-[var(--text-primary)]`
+     - Border: `border-[var(--border-subtle)]`
+     - Accent: `bg-[var(--accent)]`
+   - Gunakan class `.card-theme` untuk elemen kartu/kontainer utama.
+
+3. TEMA (THEMING)
+   - Proyek mendukung mode Light, Night, dan Retro.
+   - Semua warna baru harus didaftarkan di `resources/css/app.css` di bawah masing-masing selector `html[data-theme="..."]`.
+
+4. AUTHENTICATION
+   - Tabel user utama adalah `ar_users`.
+   - Gunakan Spatie Permission untuk manajemen peran (Roles) dan izin (Permissions).
+   - Tabel Spatie juga menggunakan prefix `ar_` (dikonfigurasi di `config/permission.php`).
+
+5. STRUKTUR MENU
+   - Menu dikelola secara dinamis melalui tabel `ar_menus`.
+   - Gunakan `order_no` untuk mengatur urutan tampilan di sidebar.

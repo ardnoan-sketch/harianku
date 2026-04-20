@@ -5,8 +5,8 @@
 /* --- Theme tokens (shell: layout, header, sidebar, footer) --- */
 html[data-theme="light"] {
     --font-ui: "Figtree", ui-sans-serif, system-ui, sans-serif;
-    --bg-body: #f9fafb;
-    --bg-main: #f3f4f6;
+    --bg-body: #f3f4f6;
+    --bg-main: #f9fafb;
     --bg-surface: #ffffff;
     --text-primary: #111827;
     --text-secondary: #374151;
@@ -25,18 +25,22 @@ html[data-theme="light"] {
     --accent-muted-bg: #eef2ff;
     --portal-pill-bg: #eef2ff;
     --portal-pill-text: #4f46e5;
-    --sidebar-bg: #111827;
-    --sidebar-border: #1f2937;
-    --sidebar-logo-border: #1f2937;
-    --sidebar-muted: #9ca3af;
-    --sidebar-input-bg: rgba(31, 41, 55, 0.8);
-    --sidebar-input-border: rgba(55, 65, 81, 0.5);
-    --sidebar-hover: #1f2937;
+    --sidebar-bg: #ffffff;
+    --sidebar-border: #e5e7eb;
+    --sidebar-logo-border: #f3f4f6;
+    --sidebar-muted: #6b7280;
+    --sidebar-input-bg: #f9fafb;
+    --sidebar-input-border: #e5e7eb;
+    --sidebar-hover: #f3f4f6;
     --sidebar-active: #4f46e5;
     --sidebar-active-hover: #4338ca;
-    --table-row-hover: #f9fafb;
+    --table-row-hover: #f3f4f6;
+    --table-row-bg: #ffffff;
     --user-avatar-bg: #e0e7ff;
     --user-avatar-text: #4338ca;
+    --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --danger: #dc2626;
+    --danger-hover: #b91c1c;
 }
 
 html[data-theme="night"] {
@@ -51,69 +55,82 @@ html[data-theme="night"] {
     --header-bg: #0f172a;
     --header-border: #1e293b;
     --header-icon: #94a3b8;
-    --header-icon-hover: #e2e8f0;
+    --header-icon-hover: #f8fafc;
     --header-icon-hover-bg: #1e293b;
     --footer-bg: #0f172a;
-    --footer-border: #1e293b;
+    --footer-border: #334155;
     --footer-text: #94a3b8;
     --accent: #818cf8;
     --accent-hover: #a5b4fc;
-    --accent-muted-bg: rgba(99, 102, 241, 0.15);
-    --portal-pill-bg: rgba(99, 102, 241, 0.2);
-    --portal-pill-text: #c7d2fe;
+    --accent-muted-bg: rgba(99, 102, 241, 0.22);
+    --portal-pill-bg: rgba(99, 102, 241, 0.28);
+    --portal-pill-text: #e0e7ff;
     --sidebar-bg: #020617;
     --sidebar-border: #1e293b;
-    --sidebar-logo-border: #1e293b;
-    --sidebar-muted: #64748b;
-    --sidebar-input-bg: rgba(15, 23, 42, 0.9);
+    --sidebar-logo-border: #334155;
+    --sidebar-muted: #94a3b8;
+    --sidebar-input-bg: #0f172a;
     --sidebar-input-border: #334155;
     --sidebar-hover: #1e293b;
-    --sidebar-active: #4f46e5;
-    --sidebar-active-hover: #6366f1;
-    --table-row-hover: rgba(30, 41, 59, 0.6);
-    --user-avatar-bg: rgba(99, 102, 241, 0.25);
+    --sidebar-active: #6366f1;
+    --sidebar-active-hover: #818cf8;
+    --table-row-hover: rgba(148, 163, 184, 0.12);
+    --table-row-bg: #1e293b;
+    --user-avatar-bg: rgba(99, 102, 241, 0.28);
     --user-avatar-text: #e0e7ff;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.35), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --danger: #f87171;
+    --danger-hover: #fca5a5;
 }
 
 html[data-theme="retro"] {
     --font-ui: "Press Start 2P", ui-monospace, monospace;
-    --bg-body: #1a0b2e;
-    --bg-main: #16082a;
-    --bg-surface: #240046;
-    --text-primary: #39ff14;
-    --text-secondary: #00ff9f;
-    --text-muted: #b794f6;
-    --border-subtle: #5f27cd;
-    --header-bg: #240046;
-    --header-border: #5f27cd;
-    --header-icon: #00ff9f;
-    --header-icon-hover: #39ff14;
-    --header-icon-hover-bg: #3d0066;
-    --footer-bg: #240046;
-    --footer-border: #5f27cd;
-    --footer-text: #b794f6;
-    --accent: #ff6b6b;
-    --accent-hover: #ff8787;
-    --accent-muted-bg: rgba(255, 107, 107, 0.15);
-    --portal-pill-bg: #3d0066;
-    --portal-pill-text: #39ff14;
-    --sidebar-bg: #0d0221;
-    --sidebar-border: #5f27cd;
-    --sidebar-logo-border: #5f27cd;
-    --sidebar-muted: #b794f6;
-    --sidebar-input-bg: #240046;
-    --sidebar-input-border: #5f27cd;
-    --sidebar-hover: #3d0066;
-    --sidebar-active: #ff6b6b;
-    --sidebar-active-hover: #ff8787;
-    --table-row-hover: rgba(95, 39, 205, 0.25);
-    --user-avatar-bg: #3d0066;
-    --user-avatar-text: #39ff14;
+    --bg-body: #0c0518;
+    --bg-main: #12082a;
+    --bg-surface: #1a0f3a;
+    --text-primary: #bef264;
+    --text-secondary: #a3e635;
+    --text-muted: #c4b5fd;
+    --border-subtle: #6d28d9;
+    --header-bg: #1a0f3a;
+    --header-border: #7c3aed;
+    --header-icon: #86efac;
+    --header-icon-hover: #bef264;
+    --header-icon-hover-bg: #2e1065;
+    --footer-bg: #12082a;
+    --footer-border: #6d28d9;
+    --footer-text: #c4b5fd;
+    --accent: #e879f9;
+    --accent-hover: #f0abfc;
+    --accent-muted-bg: rgba(232, 121, 249, 0.18);
+    --portal-pill-bg: #2e1065;
+    --portal-pill-text: #bef264;
+    --sidebar-bg: #0a0418;
+    --sidebar-border: #6d28d9;
+    --sidebar-logo-border: #5b21b6;
+    --sidebar-muted: #a78bfa;
+    --sidebar-input-bg: #1a0f3a;
+    --sidebar-input-border: #6d28d9;
+    --sidebar-hover: #2e1065;
+    --sidebar-active: #e879f9;
+    --sidebar-active-hover: #f0abfc;
+    --table-row-hover: rgba(124, 58, 237, 0.35);
+    --table-row-bg: #1a0f3a;
+    --user-avatar-bg: #4c1d95;
+    --user-avatar-text: #bef264;
+    --card-shadow: 4px 4px 0 #5b21b6;
+    --danger: #fb7185;
+    --danger-hover: #fda4af;
+}
+
+/* Retro: scale UI down — pixel font reads large at default root size */
+html[data-theme="retro"] {
+    font-size: 13px;
 }
 
 html[data-theme="retro"] body {
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.65;
 }
 
 html[data-theme="retro"] .theme-retro-scanlines {
@@ -124,4 +141,12 @@ html[data-theme="retro"] .theme-retro-scanlines {
         transparent 1px,
         transparent 3px
     );
+}
+
+/* Base utility for cards to use theme variables */
+.card-theme {
+    background-color: var(--bg-surface);
+    border-color: var(--border-subtle);
+    color: var(--text-primary);
+    box-shadow: var(--card-shadow);
 }

@@ -37,7 +37,20 @@ class ModuleSeeder extends Seeder
                 'order_no'      => 2,
                 'is_active'     => true,
             ],
+            [
+                'name'          => 'hrd',
+                'label'         => 'HR Management',
+                'description'   => 'Kelola Data Karyawan, Payroll, dan Absensi',
+                'icon_class'    => 'bx bx-group',
+                'color_from'    => 'from-orange-500',
+                'color_to'      => 'to-red-600',
+                'entry_route'   => 'hrd.dashboard',
+                'required_role' => 'hrd',
+                'order_no'      => 3,
+                'is_active'     => true,
+            ],
         ];
+
 
         foreach ($modules as $module) {
             \App\Models\Module::updateOrCreate(['name' => $module['name']], $module);

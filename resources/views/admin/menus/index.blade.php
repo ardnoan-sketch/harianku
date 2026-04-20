@@ -14,19 +14,19 @@
                 :pagination="$menus"
             >
                 @foreach($menus as $menu)
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $menu->order_no }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $menu->name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $menu->module }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $menu->parent ? $menu->parent->name : '-' }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $menu->icon_type }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $menu->url_or_route }}</td>
+                <tr class="hover:bg-[var(--table-row-hover)] transition">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">{{ $menu->order_no }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-primary)]">{{ $menu->name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">{{ $menu->module }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">{{ $menu->parent ? $menu->parent->name : '-' }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">{{ $menu->icon_type }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">{{ $menu->url_or_route }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="{{ route('admin.menus.edit', $menu->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="bx bx-edit text-lg"></i></a>
+                        <a href="{{ route('admin.menus.edit', $menu->id) }}" class="text-[var(--accent)] hover:opacity-90 mr-3"><i class="bx bx-edit text-lg"></i></a>
                         <form action="{{ route('admin.menus.destroy', $menu->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus menu ini?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-900"><i class="bx bx-trash text-lg"></i></button>
+                            <button type="submit" class="text-[var(--danger)] hover:text-[var(--danger-hover)]"><i class="bx bx-trash text-lg"></i></button>
                         </form>
                     </td>
                 </tr>

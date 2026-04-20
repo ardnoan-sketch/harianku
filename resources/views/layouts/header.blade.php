@@ -57,12 +57,12 @@
 
             <x-slot name="content">
                 @if(isset($selectableThemeModes) && $selectableThemeModes->isNotEmpty())
-                    <div class="md:hidden px-4 py-2 border-b border-gray-100">
+                    <div class="md:hidden px-4 py-2 border-b border-[var(--border-subtle)]">
                         <form method="POST" action="{{ route('preferences.theme') }}" class="space-y-1">
                             @csrf
                             @method('PATCH')
-                            <label class="text-xs text-gray-500">Tema</label>
-                            <select name="theme_mode_id" onchange="this.form.submit()" class="w-full text-sm rounded-md border-gray-300 shadow-sm">
+                            <label class="text-xs text-[var(--text-muted)]">Tema</label>
+                            <select name="theme_mode_id" onchange="this.form.submit()" class="w-full text-sm rounded-md bg-[var(--bg-surface)] border-[var(--border-subtle)] text-[var(--text-primary)] shadow-sm">
                                 @foreach($selectableThemeModes as $mode)
                                     <option value="{{ $mode->id }}" @selected($activeThemeMode && (int) $activeThemeMode->id === (int) $mode->id)>{{ $mode->name }}</option>
                                 @endforeach
@@ -70,6 +70,7 @@
                         </form>
                     </div>
                 @endif
+
                 <x-dropdown-link :href="route('profile.edit')">
                     <i class="bx bx-user mr-2"></i> {{ __('Profile') }}
                 </x-dropdown-link>

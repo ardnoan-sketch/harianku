@@ -86,14 +86,14 @@ class ThemeModeController extends Controller
         $decoded = json_decode($tokensRaw, true);
         if (! is_array($decoded)) {
             throw ValidationException::withMessages([
-                'css_tokens' => ['Isi harus JSON objek valid, contoh: {"--bg-app":"#0a0a0a","--text-primary":"#e5e5e5"}'],
+                'css_tokens' => ['Isi harus JSON objek valid, contoh: {"--bg-body":"#0a0a0a","--text-primary":"#e5e5e5"}'],
             ]);
         }
 
         foreach ($decoded as $key => $value) {
             if (! is_string($key) || ! preg_match('/^--[a-zA-Z0-9_-]+$/', $key)) {
                 throw ValidationException::withMessages([
-                    'css_tokens' => ['Kunci harus nama properti CSS custom yang valid (misalnya --bg-app).'],
+                    'css_tokens' => ['Kunci harus nama properti CSS custom yang valid (misalnya --bg-body).'],
                 ]);
             }
             if (! is_string($value)) {

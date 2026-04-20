@@ -11,50 +11,59 @@
             ? json_encode($themeMode->css_tokens, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
             : '';
     }
+    $inputClass = 'w-full rounded-md shadow-sm sm:text-sm bg-[var(--bg-surface)] border-[var(--border-subtle)] text-[var(--text-primary)] focus:ring-[var(--accent)] focus:border-[var(--accent)]';
 @endphp
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Administrator', ['label' => 'Tema', 'url' => route('admin.theme-modes.index')], $breadLast]" />
+            <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Administrator', ['label' => 'Tema & Warna', 'url' => route('admin.theme-modes.index')], $breadLast]" />
             <x-form :action="$action" :method="$method" cancelRoute="{{ route('admin.theme-modes.index') }}" :submitLabel="$submitLabel">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Slug <span class="text-red-500">*</span></label>
-                        <input type="text" name="slug" value="{{ old('slug', $themeMode->slug ?? '') }}" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm font-mono" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="mis. ocean-blue">
-                        <p class="text-xs text-gray-500 mt-1">Huruf kecil, angka, dan strip. Dipakai sebagai <code class="text-xs">data-theme</code> di HTML.</p>
+                        <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1">Slug <span class="text-[var(--danger)]">*</span></label>
+                        <input type="text" name="slug" value="{{ old('slug', $themeMode->slug ?? '') }}" class="{{ $inputClass }} font-mono" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="mis. ocean-blue">
+                        <p class="text-xs text-[var(--text-muted)] mt-1">Huruf kecil, angka, dan strip. Dipakai sebagai <code class="text-xs text-[var(--text-primary)]">data-theme</code> di HTML.</p>
                     </div>
                     <div class="col-span-1">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama tampilan <span class="text-red-500">*</span></label>
-                        <input type="text" name="name" value="{{ old('name', $themeMode->name ?? '') }}" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1">Nama tampilan <span class="text-[var(--danger)]">*</span></label>
+                        <input type="text" name="name" value="{{ old('name', $themeMode->name ?? '') }}" class="{{ $inputClass }}" required>
                     </div>
                     <div class="col-span-full">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
-                        <input type="text" name="description" value="{{ old('description', $themeMode->description ?? '') }}" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1">Deskripsi</label>
+                        <input type="text" name="description" value="{{ old('description', $themeMode->description ?? '') }}" class="{{ $inputClass }}">
                     </div>
                     <div class="col-span-1">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Urutan <span class="text-red-500">*</span></label>
-                        <input type="number" name="sort_order" value="{{ old('sort_order', $themeMode->sort_order ?? 0) }}" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required min="0">
+                        <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1">Urutan <span class="text-[var(--danger)]">*</span></label>
+                        <input type="number" name="sort_order" value="{{ old('sort_order', $themeMode->sort_order ?? 0) }}" class="{{ $inputClass }}" required min="0">
                     </div>
                     <div class="col-span-1">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Aktif <span class="text-red-500">*</span></label>
-                        <select name="is_active" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1">Aktif <span class="text-[var(--danger)]">*</span></label>
+                        <select name="is_active" class="{{ $inputClass }}" required>
                             @php $ia = (string) old('is_active', ($isEdit ? ($themeMode->is_active ? '1' : '0') : '1')); @endphp
                             <option value="1" {{ $ia === '1' ? 'selected' : '' }}>Ya</option>
                             <option value="0" {{ $ia === '0' ? 'selected' : '' }}>Tidak</option>
                         </select>
                     </div>
                     <div class="col-span-1">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Bisa dipilih user <span class="text-red-500">*</span></label>
-                        <select name="is_user_selectable" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1">Bisa dipilih user <span class="text-[var(--danger)]">*</span></label>
+                        <select name="is_user_selectable" class="{{ $inputClass }}" required>
                             @php $ius = (string) old('is_user_selectable', ($isEdit ? ($themeMode->is_user_selectable ? '1' : '0') : '1')); @endphp
                             <option value="1" {{ $ius === '1' ? 'selected' : '' }}>Ya</option>
                             <option value="0" {{ $ius === '0' ? 'selected' : '' }}>Tidak</option>
                         </select>
                     </div>
                     <div class="col-span-full">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Token CSS (JSON opsional)</label>
-                        <textarea name="css_tokens" rows="8" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm font-mono text-xs" placeholder='{"--bg-app":"#0f172a","--accent":"#38bdf8"}'>{{ $tokensJson }}</textarea>
-                        <p class="text-xs text-gray-500 mt-1">Kosongkan untuk hanya memakai stylesheet bawaan (<code>light</code>, <code>night</code>, <code>retro</code>). Mode slug baru hampir selalu perlu token di sini.</p>
+                        <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1">Override warna (JSON opsional)</label>
+                        <textarea name="css_tokens" rows="10" class="{{ $inputClass }} font-mono text-xs" placeholder='{"--bg-main":"#0f172a","--accent":"#818cf8"}'>{{ $tokensJson }}</textarea>
+                        <p class="text-xs text-[var(--text-muted)] mt-1">Kosongkan agar memakai preset default dari stylesheet untuk slug <code class="text-[var(--text-primary)]">light</code>, <code class="text-[var(--text-primary)]">night</code>, atau <code class="text-[var(--text-primary)]">retro</code>. Isi JSON untuk menimpa variabel CSS (misalnya setelah pilih tema, warna disimpan per user lewat preferensi).</p>
+                        <details class="mt-2 text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] rounded-md p-3 bg-[var(--header-icon-hover-bg)]">
+                            <summary class="cursor-pointer font-medium text-[var(--text-secondary)]">Kunci variabel yang umum dipakai</summary>
+                            <p class="mt-2 font-mono leading-relaxed break-all">
+                                --font-ui, --bg-body, --bg-main, --bg-surface, --text-primary, --text-secondary, --text-muted, --border-subtle,
+                                --accent, --accent-hover, --accent-muted-bg, --table-row-hover, --table-row-bg, --danger, --danger-hover,
+                                --header-icon-hover-bg, --sidebar-bg, --sidebar-hover, --sidebar-active
+                            </p>
+                        </details>
                     </div>
                 </div>
             </x-form>

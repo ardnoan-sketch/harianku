@@ -14,23 +14,23 @@
                 :pagination="$users"
             >
                 @foreach($users as $user)
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $user->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $user->email }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                    <tr class="hover:bg-[var(--table-row-hover)] transition">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-primary)]">{{ $user->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">{{ $user->email }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                             {{ $user->roles->pluck('name')->implode(', ') ?: '-' }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                             {{ $user->created_at->format('d M Y') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="{{ route('admin.users.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="bx bx-edit text-lg"></i></a>
+                            <a href="{{ route('admin.users.edit', $user->id) }}" class="text-[var(--accent)] hover:opacity-90 mr-3"><i class="bx bx-edit text-lg"></i></a>
 
                             @if($user->id !== auth()->id())
                                 <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus user ini?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900"><i class="bx bx-trash text-lg"></i></button>
+                                    <button type="submit" class="text-[var(--danger)] hover:text-[var(--danger-hover)]"><i class="bx bx-trash text-lg"></i></button>
                                 </form>
                             @endif
                         </td>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ar_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('ar_users')->onDelete('cascade');
             $table->string('name');
             $table->enum('type', ['income', 'expense']);
             $table->timestamps();

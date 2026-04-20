@@ -2,15 +2,15 @@
 
 <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
     <div>
-        <h2 class="text-2xl font-bold text-gray-800 leading-tight">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] leading-tight">
             {{ $title }}
         </h2>
         
         @if(count($breadcrumbs) > 0)
-            <nav class="flex text-sm text-gray-500 mt-1" aria-label="Breadcrumb">
+            <nav class="flex text-sm text-[var(--text-muted)] mt-1" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('portal') }}" class="inline-flex items-center hover:text-indigo-600 transition-colors">
+                        <a href="{{ route('portal') }}" class="inline-flex items-center text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
                             <i class="bx bx-home mr-1 text-lg"></i>
                             Portal
                         </a>
@@ -18,11 +18,11 @@
                     @foreach($breadcrumbs as $breadcrumb)
                         <li>
                             <div class="flex items-center">
-                                <i class="bx bx-chevron-right text-gray-400 text-lg mx-1"></i>
+                                <i class="bx bx-chevron-right text-[var(--text-muted)] text-lg mx-1"></i>
                                 @if(isset($breadcrumb['url']))
-                                    <a href="{{ $breadcrumb['url'] }}" class="hover:text-indigo-600 transition-colors">{{ $breadcrumb['label'] }}</a>
+                                    <a href="{{ $breadcrumb['url'] }}" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">{{ $breadcrumb['label'] }}</a>
                                 @else
-                                    <span class="text-gray-400 font-medium">{{ $breadcrumb['label'] ?? $breadcrumb }}</span>
+                                    <span class="text-[var(--text-muted)] font-medium">{{ $breadcrumb['label'] ?? $breadcrumb }}</span>
                                 @endif
                             </div>
                         </li>

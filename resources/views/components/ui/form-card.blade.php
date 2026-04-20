@@ -1,14 +1,14 @@
 @props(['title' => null, 'description' => null])
 
-<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+<div class="card-theme overflow-hidden sm:rounded-lg mb-6 border">
     @if($title || $description)
-        <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
+        <div class="px-6 py-4 border-b bg-[var(--header-icon-hover-bg)] flex justify-between items-center">
             <div>
                 @if($title)
-                    <h3 class="text-lg font-semibold text-gray-800">{{ $title }}</h3>
+                    <h3 class="text-lg font-semibold text-[var(--text-primary)]">{{ $title }}</h3>
                 @endif
                 @if($description)
-                    <p class="text-sm text-gray-500 mt-1">{{ $description }}</p>
+                    <p class="text-sm text-[var(--text-muted)] mt-1">{{ $description }}</p>
                 @endif
             </div>
             @if(isset($actions))
@@ -23,3 +23,4 @@
         {{ $slot }}
     </div>
 </div>
+
