@@ -100,7 +100,8 @@
         }
 
         function toggleQuest(id) {
-            fetch(`/productivity/quests/${id}/toggle`, {
+            const url = "{{ route('notes.quests.toggle', ':id') }}".replace(':id', id);
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

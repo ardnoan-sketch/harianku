@@ -72,11 +72,11 @@ class MenuSeeder extends Seeder
                 'attributes' => ['name' => 'Calendar', 'icon_type' => 'class', 'icon_value' => 'bx bx-calendar', 'order_no' => 2],
             ],
             [
-                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.index'],
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.notes.index'],
                 'attributes' => ['name' => 'Notes', 'icon_type' => 'class', 'icon_value' => 'bx bx-note', 'order_no' => 3],
             ],
             [
-                'keys' => ['module' => 'productivity', 'url_or_route' => 'notebooks.index'],
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.notebooks.index'],
                 'attributes' => ['name' => 'Notebook', 'icon_type' => 'class', 'icon_value' => 'bx bx-book-content', 'order_no' => 4],
             ],
             [

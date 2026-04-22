@@ -31,7 +31,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'Notes',
-                'url_or_route' => 'notes.index',
+                'url_or_route' => 'notes.notes.index',
                 'icon_type' => 'class',
                 'icon_value' => 'bx bx-note',
                 'module' => 'productivity',
@@ -39,7 +39,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'Notebook',
-                'url_or_route' => 'notebooks.index',
+                'url_or_route' => 'notes.notebooks.index',
                 'icon_type' => 'class',
                 'icon_value' => 'bx bx-book-content',
                 'module' => 'productivity',
