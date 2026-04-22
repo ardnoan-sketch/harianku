@@ -61,6 +61,28 @@ class MenuSeeder extends Seeder
                 'keys' => ['module' => 'hrd', 'url_or_route' => 'hrd.employees.index'],
                 'attributes' => ['name' => 'Data Karyawan', 'icon_type' => 'class', 'icon_value' => 'bx bx-id-card', 'order_no' => 2],
             ],
+
+            // Productivity Module
+            [
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.myday'],
+                'attributes' => ['name' => 'My Day', 'icon_type' => 'class', 'icon_value' => 'bx bx-calendar-check', 'order_no' => 1],
+            ],
+            [
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.calendar'],
+                'attributes' => ['name' => 'Calendar', 'icon_type' => 'class', 'icon_value' => 'bx bx-calendar', 'order_no' => 2],
+            ],
+            [
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.index'],
+                'attributes' => ['name' => 'Notes', 'icon_type' => 'class', 'icon_value' => 'bx bx-note', 'order_no' => 3],
+            ],
+            [
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notebooks.index'],
+                'attributes' => ['name' => 'Notebook', 'icon_type' => 'class', 'icon_value' => 'bx bx-book-content', 'order_no' => 4],
+            ],
+            [
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.quests.index'],
+                'attributes' => ['name' => 'Quests', 'icon_type' => 'class', 'icon_value' => 'bx bx-target-lock', 'order_no' => 5],
+            ],
         ];
 
 

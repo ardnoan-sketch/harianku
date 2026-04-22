@@ -72,4 +72,24 @@ class User extends Authenticatable
     {
         return $this->belongsTo(ThemeMode::class, 'theme_mode_id');
     }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function dailyLogs()
+    {
+        return $this->hasMany(DailyLog::class);
+    }
+
+    public function quests()
+    {
+        return $this->hasMany(Quest::class);
+    }
+
+    public function notebooks()
+    {
+        return $this->hasMany(Notebook::class);
+    }
 }

@@ -49,6 +49,18 @@ class ModuleSeeder extends Seeder
                 'order_no'      => 3,
                 'is_active'     => true,
             ],
+            [
+                'name'          => 'productivity',
+                'label'         => 'Productivity',
+                'description'   => 'Sistem Catatan, Quest Harian, dan Notebook Organisasi',
+                'icon_class'    => 'bx bx-rocket',
+                'color_from'    => 'from-blue-500',
+                'color_to'      => 'to-indigo-600',
+                'entry_route'   => 'notes.myday',
+                'required_role' => null,
+                'order_no'      => 4,
+                'is_active'     => true,
+            ],
         ];
 
 

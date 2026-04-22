@@ -3,7 +3,7 @@
         ? 'admin'
         : (request()->is('finance*')
             ? 'finance'
-            : (request()->is('hrd*') ? 'hrd' : 'portal'));
+            : (request()->is('hrd*') ? 'hrd' : (request()->is('productivity*') ? 'productivity' : 'portal')));
 
     $menus = \App\Models\Menu::whereNull('parent_id')
         ->where('module', $currentModule)

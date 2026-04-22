@@ -29,3 +29,12 @@ STANDAR PENGEMBANGAN PROYEK HARIANKU
 5. STRUKTUR MENU
    - Menu dikelola secara dinamis melalui tabel `ar_menus`.
    - Gunakan `order_no` untuk mengatur urutan tampilan di sidebar.
+
+6. QUALITY ASSURANCE (SONARQUBE)
+   - Semua kode harus melewati analisis SonarQube sebelum masuk ke tahap production.
+   - Konfigurasi scanner ada di `sonar-project.properties`.
+   - Prioritas perbaikan:
+     1. Vulnerabilities (Keamanan)
+     2. Bugs (Kebenaran Logika)
+     3. Code Smells (Kebersihan Kode)
+   - Test coverage minimal yang disarankan adalah 80% (jika menggunakan testing framework).
