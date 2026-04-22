@@ -31,7 +31,7 @@
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($modules as $module)
-                        <a href="{{ Route::has($module->entry_route) ? route($module->entry_route) : '#' }}" class="block group">
+                        <a href="{{ Route::has($module->entry_route) ? route($module->entry_route) : (Route::has('productivity.' . $module->entry_route) ? route('productivity.' . $module->entry_route) : (Route::has('notes.' . $module->entry_route) ? route('notes.' . $module->entry_route) : '#')) }}" class="block group">
                             <div class="relative h-full bg-gradient-to-br {{ $module->color_from }} {{ $module->color_to }} rounded-2xl p-8 text-white shadow-lg transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl overflow-hidden">
                                 {{-- Decorative element --}}
                                 <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white bg-opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>

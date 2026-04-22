@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center w-full">
             <div class="flex items-center gap-4">
-                <a href="{{ route('notes.notebooks.index') }}" class="text-[var(--text-muted)] hover:text-[var(--text-primary)]">
+                <a href="{{ route('notebooks.index') }}" class="text-[var(--text-muted)] hover:text-[var(--text-primary)]">
                     <i class="bx bx-arrow-back text-2xl"></i>
                 </a>
                 <h2 class="font-semibold text-xl text-[var(--text-primary)] leading-tight">
@@ -36,7 +36,7 @@
     </div>
 
     <x-modal name="new-item-modal" focusable>
-        <form method="post" action="{{ route('notes.notebooks.items.store', $notebook) }}" class="p-6 bg-[var(--bg-surface)]">
+        <form method="post" action="{{ route('notebooks.items.store', $notebook) }}" class="p-6 bg-[var(--bg-surface)]">
             @csrf
             <h2 class="text-lg font-medium text-[var(--text-primary)]">Add Item to {{ $notebook->name }}</h2>
             

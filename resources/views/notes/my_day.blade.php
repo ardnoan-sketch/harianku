@@ -72,7 +72,7 @@
     @push('scripts')
     <script>
         function toggleTask(id, isCompleted) {
-            fetch('{{ route('notes.task.toggle') }}', {
+            fetch('{{ route('productivity.task.toggle') }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,7 +87,7 @@
             const title = input.value.trim();
             if (!title) return;
 
-            fetch('{{ route('notes.task.store') }}', {
+            fetch('{{ route('productivity.task.store') }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

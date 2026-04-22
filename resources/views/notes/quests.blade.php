@@ -64,7 +64,7 @@
 
     {{-- Modal for New Quest --}}
     <x-modal name="new-quest-modal" focusable>
-        <form method="post" action="{{ route('notes.quests.store') }}" class="p-6 bg-[var(--bg-surface)]">
+        <form method="post" action="{{ route('productivity.quests.store') }}" class="p-6 bg-[var(--bg-surface)]">
             @csrf
             <input type="hidden" name="type" id="quest-type-input">
             <h2 class="text-lg font-medium text-[var(--text-primary)]">
@@ -100,7 +100,7 @@
         }
 
         function toggleQuest(id) {
-            const url = "{{ route('notes.quests.toggle', ':id') }}".replace(':id', id);
+            const url = "{{ route('productivity.quests.toggle', ':id') }}".replace(':id', id);
             fetch(url, {
                 method: 'POST',
                 headers: {

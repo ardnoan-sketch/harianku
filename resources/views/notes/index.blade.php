@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-[var(--text-primary)] leading-tight">
                 {{ __('My Notes') }}
             </h2>
-            <a href="{{ route('notes.notes.create') }}" class="inline-flex items-center px-4 py-2 bg-[var(--accent)] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[var(--accent-hover)] focus:bg-[var(--accent-hover)] active:bg-[var(--accent-hover)] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            <a href="{{ route('notes.create') }}" class="inline-flex items-center px-4 py-2 bg-[var(--accent)] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[var(--accent-hover)] focus:bg-[var(--accent-hover)] active:bg-[var(--accent-hover)] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 New Note
             </a>
         </div>
@@ -20,10 +20,10 @@
                                 {{ str_replace('_', ' ', $note->type) }}
                             </span>
                             <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <a href="{{ route('notes.notes.edit', $note) }}" class="text-[var(--text-muted)] hover:text-[var(--accent)]">
+                                <a href="{{ route('notes.edit', $note) }}" class="text-[var(--text-muted)] hover:text-[var(--accent)]">
                                     <i class="bx bx-edit-alt"></i>
                                 </a>
-                                <form action="{{ route('notes.notes.destroy', $note) }}" method="POST" onsubmit="return confirm('Hapus catatan ini?')">
+                                <form action="{{ route('notes.destroy', $note) }}" method="POST" onsubmit="return confirm('Hapus catatan ini?')">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="text-[var(--text-muted)] hover:text-red-500">
                                         <i class="bx bx-trash"></i>

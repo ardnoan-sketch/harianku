@@ -15,7 +15,7 @@ return new class extends Migration
         $menus = [
             [
                 'name' => 'My Day',
-                'url_or_route' => 'notes.myday',
+                'url_or_route' => 'productivity.myday',
                 'icon_type' => 'class',
                 'icon_value' => 'bx bx-calendar-check',
                 'module' => 'productivity',
@@ -23,7 +23,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'Calendar',
-                'url_or_route' => 'notes.calendar',
+                'url_or_route' => 'productivity.calendar',
                 'icon_type' => 'class',
                 'icon_value' => 'bx bx-calendar',
                 'module' => 'productivity',
@@ -31,7 +31,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'Notes',
-                'url_or_route' => 'notes.notes.index',
+                'url_or_route' => 'notes.index',
                 'icon_type' => 'class',
                 'icon_value' => 'bx bx-note',
                 'module' => 'productivity',
@@ -39,7 +39,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'Notebook',
-                'url_or_route' => 'notes.notebooks.index',
+                'url_or_route' => 'notebooks.index',
                 'icon_type' => 'class',
                 'icon_value' => 'bx bx-book-content',
                 'module' => 'productivity',
@@ -47,7 +47,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'Quests',
-                'url_or_route' => 'notes.quests.index',
+                'url_or_route' => 'productivity.quests.index',
                 'icon_type' => 'class',
                 'icon_value' => 'bx bx-target-lock',
                 'module' => 'productivity',
@@ -56,7 +56,10 @@ return new class extends Migration
         ];
 
         foreach ($menus as $menu) {
-            Menu::create($menu);
+            Menu::updateOrCreate(
+                ['module' => $menu['module'], 'url_or_route' => $menu['url_or_route']],
+                $menu
+            );
         }
     }
 

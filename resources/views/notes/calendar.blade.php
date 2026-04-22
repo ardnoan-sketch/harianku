@@ -108,7 +108,7 @@
             document.getElementById('modal-content').innerHTML = '<p class="text-center py-4 text-[var(--text-muted)] animate-pulse">Loading activity...</p>';
             window.dispatchEvent(new CustomEvent('open-modal', { detail: 'day-detail-modal' }));
 
-            fetch(`{{ route('notes.myday') }}?date=${date}`, {
+            fetch(`{{ route('productivity.myday') }}?date=${date}`, {
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             })
             .then(res => res.json())

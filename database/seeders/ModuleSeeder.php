@@ -56,7 +56,7 @@ class ModuleSeeder extends Seeder
                 'icon_class'    => 'bx bx-rocket',
                 'color_from'    => 'from-blue-500',
                 'color_to'      => 'to-indigo-600',
-                'entry_route'   => 'notes.myday',
+                'entry_route'   => 'productivity.myday',
                 'required_role' => null,
                 'order_no'      => 4,
                 'is_active'     => true,

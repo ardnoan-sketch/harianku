@@ -9,53 +9,49 @@ class MenuSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * Idempotent: aman dipanggil berulang (mis. php artisan db:seed --class=MenuSeeder)
-     * karena setiap baris dipetakan lewat module + url_or_route yang unik.
      */
     public function run(): void
     {
         $menus = [
-            // Admin Module
             [
                 'keys' => ['module' => 'admin', 'url_or_route' => 'admin.dashboard'],
-                'attributes' => ['name' => 'Dashboard', 'icon_type' => 'class', 'icon_value' => 'bx bx-home-alt', 'order_no' => 1],
+                'attributes' => ['name' => 'Dashboard', 'icon_type' => 'class', 'icon_value' => 'bx bxs-dashboard', 'order_no' => 1],
             ],
             [
                 'keys' => ['module' => 'admin', 'url_or_route' => 'admin.users.index'],
-                'attributes' => ['name' => 'User Management', 'icon_type' => 'class', 'icon_value' => 'bx bx-user-circle', 'order_no' => 2],
-            ],
-            [
-                'keys' => ['module' => 'admin', 'url_or_route' => 'admin.modules.index'],
-                'attributes' => ['name' => 'Module Management', 'icon_type' => 'class', 'icon_value' => 'bx bx-package', 'order_no' => 3],
+                'attributes' => ['name' => 'User Management', 'icon_type' => 'class', 'icon_value' => 'bx bxs-user-account', 'order_no' => 2],
             ],
             [
                 'keys' => ['module' => 'admin', 'url_or_route' => 'admin.menus.index'],
-                'attributes' => ['name' => 'Menu Management', 'icon_type' => 'class', 'icon_value' => 'bx bx-list-ul', 'order_no' => 4],
+                'attributes' => ['name' => 'Menu Management', 'icon_type' => 'class', 'icon_value' => 'bx bx-menu', 'order_no' => 3],
+            ],
+            [
+                'keys' => ['module' => 'admin', 'url_or_route' => 'admin.modules.index'],
+                'attributes' => ['name' => 'Module Management', 'icon_type' => 'class', 'icon_value' => 'bx bx-package', 'order_no' => 4],
             ],
             [
                 'keys' => ['module' => 'admin', 'url_or_route' => 'admin.theme-modes.index'],
-                'attributes' => ['name' => 'Tema & Warna', 'icon_type' => 'class', 'icon_value' => 'bx bx-palette', 'order_no' => 5],
+                'attributes' => ['name' => 'Theme Management', 'icon_type' => 'class', 'icon_value' => 'bx bx-palette', 'order_no' => 5],
             ],
 
             // Finance Module
             [
                 'keys' => ['module' => 'finance', 'url_or_route' => 'finance.dashboard'],
-                'attributes' => ['name' => 'Dashboard', 'icon_type' => 'class', 'icon_value' => 'bx bx-pie-chart-alt-2', 'order_no' => 1],
-            ],
-            [
-                'keys' => ['module' => 'finance', 'url_or_route' => 'finance.categories.index'],
-                'attributes' => ['name' => 'Kategori', 'icon_type' => 'class', 'icon_value' => 'bx bx-category', 'order_no' => 2],
+                'attributes' => ['name' => 'Dashboard', 'icon_type' => 'class', 'icon_value' => 'bx bxs-dashboard', 'order_no' => 1],
             ],
             [
                 'keys' => ['module' => 'finance', 'url_or_route' => 'finance.transactions.index'],
-                'attributes' => ['name' => 'Transaksi', 'icon_type' => 'class', 'icon_value' => 'bx bx-transfer', 'order_no' => 3],
+                'attributes' => ['name' => 'Transactions', 'icon_type' => 'class', 'icon_value' => 'bx bx-transfer', 'order_no' => 2],
+            ],
+            [
+                'keys' => ['module' => 'finance', 'url_or_route' => 'finance.categories.index'],
+                'attributes' => ['name' => 'Categories', 'icon_type' => 'class', 'icon_value' => 'bx bx-category', 'order_no' => 3],
             ],
 
             // HRD Module
             [
                 'keys' => ['module' => 'hrd', 'url_or_route' => 'hrd.dashboard'],
-                'attributes' => ['name' => 'Dashboard', 'icon_type' => 'class', 'icon_value' => 'bx bx-bar-chart-square', 'order_no' => 1],
+                'attributes' => ['name' => 'Dashboard', 'icon_type' => 'class', 'icon_value' => 'bx bxs-dashboard', 'order_no' => 1],
             ],
             [
                 'keys' => ['module' => 'hrd', 'url_or_route' => 'hrd.employees.index'],
@@ -64,30 +60,29 @@ class MenuSeeder extends Seeder
 
             // Productivity Module
             [
-                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.myday'],
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'productivity.myday'],
                 'attributes' => ['name' => 'My Day', 'icon_type' => 'class', 'icon_value' => 'bx bx-calendar-check', 'order_no' => 1],
             ],
             [
-                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.calendar'],
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'productivity.calendar'],
                 'attributes' => ['name' => 'Calendar', 'icon_type' => 'class', 'icon_value' => 'bx bx-calendar', 'order_no' => 2],
             ],
             [
-                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.notes.index'],
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.index'],
                 'attributes' => ['name' => 'Notes', 'icon_type' => 'class', 'icon_value' => 'bx bx-note', 'order_no' => 3],
             ],
             [
-                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.notebooks.index'],
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'notebooks.index'],
                 'attributes' => ['name' => 'Notebook', 'icon_type' => 'class', 'icon_value' => 'bx bx-book-content', 'order_no' => 4],
             ],
             [
-                'keys' => ['module' => 'productivity', 'url_or_route' => 'notes.quests.index'],
+                'keys' => ['module' => 'productivity', 'url_or_route' => 'productivity.quests.index'],
                 'attributes' => ['name' => 'Quests', 'icon_type' => 'class', 'icon_value' => 'bx bx-target-lock', 'order_no' => 5],
             ],
         ];
 
-
-        foreach ($menus as $row) {
-            Menu::updateOrCreate($row['keys'], $row['attributes']);
+        foreach ($menus as $menu) {
+            Menu::updateOrCreate($menu['keys'], $menu['attributes']);
         }
     }
 }

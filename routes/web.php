@@ -64,19 +64,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Productivity Module
-    Route::prefix('productivity')->name('notes.')->group(function () {
+    Route::prefix('productivity')->group(function () {
         // My Day
-        Route::get('/my-day', [DailyController::class, 'show'])->name('myday');
-        Route::post('/task/toggle', [DailyController::class, 'toggleTask'])->name('task.toggle');
-        Route::post('/task', [DailyController::class, 'storeTask'])->name('task.store');
+        Route::get('/my-day', [DailyController::class, 'show'])->name('productivity.myday');
+        Route::post('/task/toggle', [DailyController::class, 'toggleTask'])->name('productivity.task.toggle');
+        Route::post('/task', [DailyController::class, 'storeTask'])->name('productivity.task.store');
 
         // Calendar
-        Route::get('/calendar', [DailyController::class, 'calendar'])->name('calendar');
+        Route::get('/calendar', [DailyController::class, 'calendar'])->name('productivity.calendar');
 
         // Quests
-        Route::get('/quests', [QuestController::class, 'index'])->name('quests.index');
-        Route::post('/quests', [QuestController::class, 'store'])->name('quests.store');
-        Route::post('/quests/{quest}/toggle', [QuestController::class, 'toggle'])->name('quests.toggle');
+        Route::get('/quests', [QuestController::class, 'index'])->name('productivity.quests.index');
+        Route::post('/quests', [QuestController::class, 'store'])->name('productivity.quests.store');
+        Route::post('/quests/{quest}/toggle', [QuestController::class, 'toggle'])->name('productivity.quests.toggle');
 
         // Notes
         Route::resource('notes', NoteController::class);

@@ -8,7 +8,7 @@
     <div class="py-6">
         <div class="max-w-2xl mx-auto">
             <div class="card-theme rounded-xl overflow-hidden border bg-[var(--bg-surface)] border-[var(--border-subtle)] p-6">
-                <form method="POST" action="{{ route('notes.notes.store') }}">
+                <form method="POST" action="{{ route('notes.store') }}">
                     @csrf
 
                     <div>
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-6 gap-4">
-                        <a href="{{ route('notes.notes.index') }}" class="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+                        <a href="{{ route('notes.index') }}" class="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
                             {{ __('Cancel') }}
                         </a>
                         <x-primary-button class="bg-[var(--accent)]">

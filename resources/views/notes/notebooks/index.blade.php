@@ -13,7 +13,7 @@
     <div class="py-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @forelse($notebooks as $notebook)
-                <a href="{{ route('notes.notebooks.show', $notebook) }}" class="card-theme rounded-xl p-6 border bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:shadow-xl transition-all duration-300 group">
+                <a href="{{ route('notebooks.show', $notebook) }}" class="card-theme rounded-xl p-6 border bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:shadow-xl transition-all duration-300 group">
                     <div class="flex flex-col items-center text-center">
                         <div class="p-4 rounded-2xl bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 mb-4 group-hover:scale-110 transition-transform">
                             <i class="bx bxs-folder-open text-4xl"></i>
@@ -34,7 +34,7 @@
     </div>
 
     <x-modal name="new-notebook-modal" focusable>
-        <form method="post" action="{{ route('notes.notebooks.store') }}" class="p-6 bg-[var(--bg-surface)]">
+        <form method="post" action="{{ route('notebooks.store') }}" class="p-6 bg-[var(--bg-surface)]">
             @csrf
             <h2 class="text-lg font-medium text-[var(--text-primary)]">Create New Notebook</h2>
             <div class="mt-6">

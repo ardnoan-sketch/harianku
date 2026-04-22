@@ -20,7 +20,7 @@ return new class extends Migration
                 'icon_class'    => 'bx bx-rocket',
                 'color_from'    => 'from-blue-500',
                 'color_to'      => 'to-indigo-600',
-                'entry_route'   => 'notes.myday',
+                'entry_route'   => 'productivity.myday',
                 'required_role' => null, // Biarkan null agar bisa diakses user biasa atau atur sesuai kebutuhan
                 'order_no'      => 4,
                 'is_active'     => true,
