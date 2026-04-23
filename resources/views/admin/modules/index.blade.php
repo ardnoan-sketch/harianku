@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <x-ui.page-header title="Daftar Modul" :breadcrumbs="['Administrator', 'Modules']" />
-            <x-ui.alert type="success" />
-            <x-ui.alert type="error" />
+    <x-ui.page-header title="Daftar Modul" :breadcrumbs="['Administrator', 'Modules']" />
 
-            <x-grid 
+    <x-ui.page-container padding="normal">
+        <x-ui.alert type="success" />
+        <x-ui.alert type="error" />
+
+        <x-grid 
                 title="Daftar Modul Aplikasi" 
                 description="Setiap modul yang Anda buat di sini akan otomatis muncul sebagai kartu di halaman Portal, sesuai role yang ditetapkan."
                 createRoute="{{ route('admin.modules.create') }}"
@@ -31,7 +31,6 @@
                     </td>
                 </tr>
                 @endforeach
-            </x-grid>
-        </div>
-    </div>
+        </x-grid>
+    </x-ui.page-container>
 </x-app-layout>

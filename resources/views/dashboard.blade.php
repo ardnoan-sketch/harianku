@@ -1,12 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <x-ui.page-header title="Dashboard" :breadcrumbs="['Home', 'Dashboard']" />
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <x-ui.page-container padding="normal">
             
             @if (session('status'))
                 <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
@@ -96,8 +91,7 @@
                 </div>
             </div>
 
-        </div>
-    </div>
+    </x-ui.page-container>
 
     <!-- Chart.js Setup -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

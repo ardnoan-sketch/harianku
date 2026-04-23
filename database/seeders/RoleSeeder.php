@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -16,9 +18,25 @@ class RoleSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create Roles
-        $adminRole = \Spatie\Permission\Models\Role::firstOrCreate(['name' => 'admin']);
-        $financeRole = \Spatie\Permission\Models\Role::firstOrCreate(['name' => 'finance']);
-        $hrdRole = \Spatie\Permission\Models\Role::firstOrCreate(['name' => 'hrd']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $financeRole = Role::firstOrCreate(['name' => 'finance']);
+        $hrdRole = Role::firstOrCreate(['name' => 'hrd']);
+
+        // Assign all permissions to admin role
+        $allPermissions = Permission::all();
+        $adminRole->syncPermissions($allPermissions);
+
+        // Assign finance permissions to finance role
+        $financePermissions = Permission::where('name', 'like', 'finance.%')
+            ->orWhere('name', 'like', 'productivity.%')
+            ->get();
+        $financeRole->syncPermissions($financePermissions);
+
+        // Assign HRD permissions to hrd role
+        $hrdPermissions = Permission::where('name', 'like', 'hrd.%')
+            ->orWhere('name', 'like', 'productivity.%')
+            ->get();
+        $hrdRole->syncPermissions($hrdPermissions);
 
         // Create Users and assign roles
         $adminUser = \App\Models\User::firstOrCreate(

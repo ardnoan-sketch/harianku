@@ -1,16 +1,13 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between items-center w-full">
-            <h2 class="font-semibold text-xl text-[var(--text-primary)] leading-tight">
-                {{ __('My Notes') }}
-            </h2>
-            <a href="{{ route('notes.create') }}" class="inline-flex items-center px-4 py-2 bg-[var(--accent)] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[var(--accent-hover)] focus:bg-[var(--accent-hover)] active:bg-[var(--accent-hover)] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                New Note
+    <x-ui.page-header title="My Notes" :breadcrumbs="['Productivity', 'Notes']">
+        <x-slot:actions>
+            <a href="{{ route('notes.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 bg-[var(--accent)] text-white rounded-lg font-medium text-sm hover:bg-[var(--accent-hover)] transition shadow-sm">
+                <i class="bx bx-plus text-lg"></i> New Note
             </a>
-        </div>
-    </x-slot>
+        </x-slot:actions>
+    </x-ui.page-header>
 
-    <div class="py-6">
+    <x-ui.page-container padding="normal">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($notes as $note)
                 <div class="card-theme rounded-xl overflow-hidden border bg-[var(--bg-surface)] border-[var(--border-subtle)] flex flex-col group hover:shadow-lg transition-all duration-300">
@@ -48,8 +45,10 @@
             @endforelse
         </div>
 
-        <div class="mt-8">
-            {{ $notes->links() }}
-        </div>
-    </div>
+        @if($notes->hasPages())
+            <div class="mt-8 theme-pagination">
+                {{ $notes->links() }}
+            </div>
+        @endif
+    </x-ui.page-container>
 </x-app-layout>

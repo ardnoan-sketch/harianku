@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <x-ui.page-header title="Data Karyawan" :breadcrumbs="['HRD', 'Karyawan']" />
-            <x-ui.alert type="success" />
-            <x-ui.alert type="error" />
+    <x-ui.page-header title="Data Karyawan" :breadcrumbs="['HRD', 'Karyawan']" />
 
-            <x-grid 
+    <x-ui.page-container padding="normal">
+        <x-ui.alert type="success" />
+        <x-ui.alert type="error" />
+
+        <x-grid 
                 title="Data Karyawan" 
                 description="Kelola data pegawai, posisi, dan departemen di perusahaan Anda."
                 createRoute="{{ route('hrd.employees.create') }}"
@@ -56,7 +56,6 @@
                         </td>
                     </tr>
                 @endforelse
-            </x-grid>
-        </div>
-    </div>
+        </x-grid>
+    </x-ui.page-container>
 </x-app-layout>

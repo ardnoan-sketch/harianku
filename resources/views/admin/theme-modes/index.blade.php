@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <x-ui.page-header title="Tema & Warna" :breadcrumbs="['Administrator', 'Tema']" />
-            <x-ui.alert type="success" />
-            <x-ui.alert type="error" />
+    <x-ui.page-header title="Tema & Warna" :breadcrumbs="['Administrator', 'Tema']" />
 
-            <x-grid
+    <x-ui.page-container padding="normal">
+        <x-ui.alert type="success" />
+        <x-ui.alert type="error" />
+
+        <x-grid
                 title="Daftar mode tampilan"
                 description="CRUD preset warna dan mode tampilan. Pengguna memilih tema dari header; tambah atau edit mode di sini (slug unik). Field JSON opsional menimpa variabel CSS default."
                 createRoute="{{ route('admin.theme-modes.create') }}"
@@ -35,7 +35,6 @@
                         </td>
                     </tr>
                 @endforeach
-            </x-grid>
-        </div>
-    </div>
+        </x-grid>
+    </x-ui.page-container>
 </x-app-layout>

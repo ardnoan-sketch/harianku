@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <x-ui.page-header title="Daftar Menu" :breadcrumbs="['Administrator', 'Menus']" />
-            <x-ui.alert type="success" />
-            <x-ui.alert type="error" />
+    <x-ui.page-header title="Daftar Menu" :breadcrumbs="['Administrator', 'Menus']" />
 
-            <x-grid 
+    <x-ui.page-container padding="normal">
+        <x-ui.alert type="success" />
+        <x-ui.alert type="error" />
+
+        <x-grid 
                 title="Daftar Menu" 
                 description="Kelola menu sidebar untuk seluruh modul di aplikasi."
                 createRoute="{{ route('admin.menus.create') }}"
@@ -31,7 +31,6 @@
                     </td>
                 </tr>
                 @endforeach
-            </x-grid>
-        </div>
-    </div>
+        </x-grid>
+    </x-ui.page-container>
 </x-app-layout>

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ThemeModeSeeder::class,
             ModuleSeeder::class,
             MenuSeeder::class,
+            PermissionSeeder::class,
             RoleSeeder::class,
         ]);
 

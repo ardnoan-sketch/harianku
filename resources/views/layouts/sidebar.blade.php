@@ -10,6 +10,19 @@
         ->orderBy('order_no')
         ->with('children')
         ->get();
+
+    // Helper function to check if a menu or any of its children is active
+    $isMenuActive = function($menu) {
+        if (request()->routeIs($menu->url_or_route)) {
+            return true;
+        }
+        foreach ($menu->children as $child) {
+            if (request()->routeIs($child->url_or_route)) {
+                return true;
+            }
+        }
+        return false;
+    };
 @endphp
 
 <aside
@@ -47,29 +60,31 @@
             </div>
         </div>
 
-        <ul class="space-y-2 px-2">
+        <ul class="space-y-1 px-2">
             @foreach($menus as $menu)
                 @if(!$menu->permission_name || auth()->user()->can($menu->permission_name))
                     @php
                         $searchTerms = strtolower($menu->name);
+                        $menuActive = $isMenuActive($menu);
                         foreach($menu->children as $child) {
                             $searchTerms .= ' ' . strtolower($child->name);
                         }
                     @endphp
-                    <li x-data="{ open: false }"
-                        x-init="$watch('search', val => { if(val !== '' && '{{ $searchTerms }}'.includes(val.toLowerCase())) { open = true; } else if (val === '') { open = false; } })"
-                        x-show="search === '' || '{{ $searchTerms }}'.includes(search.toLowerCase())">
+                    <li x-data="{ open: {{ $menuActive ? 'true' : 'false' }} }"
+                        x-init="$watch('search', val => { if(val !== '' && '{{ $searchTerms }}'.includes(val.toLowerCase())) { open = true; } })"
+                        x-show="search === '' || '{{ $searchTerms }}'.includes(search.toLowerCase())"
+                        class="mb-1">
 
                         @if($menu->children->count() > 0)
                             <button type="button" @click="open = !open; if(sidebarState==='mini') sidebarState='full'"
-                                class="w-full flex items-center justify-between p-3 rounded-lg transition-colors group cursor-pointer hover:bg-[var(--sidebar-hover)] text-[var(--text-primary)]"
+                                class="w-full flex items-center justify-between p-3 rounded-lg transition-all active:scale-[0.98] group cursor-pointer {{ $menuActive ? 'bg-[var(--sidebar-active)] text-white shadow-sm' : 'hover:bg-[var(--sidebar-hover)] text-[var(--text-primary)]' }}"
                                 :class="{'px-3': sidebarState === 'full', 'px-0 justify-center': sidebarState === 'mini'}"
                             >
                                 <div class="flex items-center gap-3">
                                     @if($menu->icon_type === 'class')
-                                        <i class="{{ $menu->icon_value }} text-xl text-[var(--sidebar-muted)] group-hover:text-[var(--text-primary)]"></i>
+                                        <i class="{{ $menu->icon_value }} text-xl {{ $menuActive ? 'text-white' : 'text-[var(--sidebar-muted)] group-hover:text-[var(--text-primary)]' }}"></i>
                                     @else
-                                        <img src="{{ Storage::url($menu->icon_value) }}" class="w-6 h-6 object-contain filter grayscale group-hover:grayscale-0" alt="">
+                                        <img src="{{ Storage::url($menu->icon_value) }}" class="w-6 h-6 object-contain filter {{ $menuActive ? 'grayscale-0' : 'grayscale group-hover:grayscale-0' }}" alt="">
                                     @endif
 
                                     <span class="font-medium whitespace-nowrap transition-opacity duration-300"
@@ -77,18 +92,20 @@
                                         {{ $menu->name }}
                                     </span>
                                 </div>
-                                <i class="bx bx-chevron-down transition-transform duration-300 text-[var(--sidebar-muted)]"
+                                <i class="bx bx-chevron-down transition-transform duration-300 {{ $menuActive ? 'text-white rotate-180' : 'text-[var(--sidebar-muted)]' }}"
                                    :class="{'rotate-180': open, 'hidden': sidebarState === 'mini'}"></i>
                             </button>
 
                             <ul x-show="open && sidebarState === 'full'"
                                 x-collapse
-                                class="mt-1 space-y-1 pl-11 pr-2">
+                                class="mt-1 space-y-1 pl-11 pr-2 py-1">
                                 @foreach($menu->children as $child)
                                     @if(!$child->permission_name || auth()->user()->can($child->permission_name))
-                                    <li x-show="search === '' || '{{ strtolower($child->name) }}'.includes(search.toLowerCase())">
+                                    @php $childActive = request()->routeIs($child->url_or_route); @endphp
+                                    <li x-show="search === '' || '{{ strtolower($child->name) }}'.includes(search.toLowerCase())"
+                                        class="leading-none">
                                         <a href="{{ $child->url_or_route ? (Route::has($child->url_or_route) ? route($child->url_or_route) : url($child->url_or_route)) : '#' }}"
-                                           class="block p-2 rounded-lg text-sm transition-colors {{ request()->routeIs($child->url_or_route) ? 'bg-[var(--sidebar-active)] text-white' : 'text-[var(--sidebar-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--sidebar-hover)]' }}">
+                                           class="block px-3 py-2 rounded-lg text-sm transition-all {{ $childActive ? 'bg-[var(--sidebar-active)] bg-opacity-20 text-[var(--sidebar-active)] font-medium' : 'text-[var(--sidebar-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--sidebar-hover)]' }}">
                                             {{ $child->name }}
                                         </a>
                                     </li>
@@ -97,14 +114,14 @@
                             </ul>
                         @else
                             <a href="{{ $menu->url_or_route ? (Route::has($menu->url_or_route) ? route($menu->url_or_route) : url($menu->url_or_route)) : '#' }}"
-                               class="flex items-center gap-3 p-3 rounded-lg transition-colors group {{ request()->routeIs($menu->url_or_route) ? 'bg-[var(--sidebar-active)] hover:bg-[var(--sidebar-active-hover)] text-white' : 'hover:bg-[var(--sidebar-hover)]' }}"
-                               :class="{'px-3': sidebarState === 'full', 'px-0 justify-center': sidebarState === 'mini'}"
+                               class="flex items-center gap-3 p-3 rounded-lg transition-all active:scale-[0.98] group {{ $menuActive ? 'bg-[var(--sidebar-active)] hover:bg-[var(--sidebar-active-hover)] text-white shadow-sm' : 'hover:bg-[var(--sidebar-hover)] text-[var(--text-primary)]' }}"
+                                :class="{'px-3': sidebarState === 'full', 'px-0 justify-center': sidebarState === 'mini'}"
                                title="{{ $menu->name }}"
                             >
                                 @if($menu->icon_type === 'class')
-                                    <i class="{{ $menu->icon_value }} text-xl {{ request()->routeIs($menu->url_or_route) ? 'text-white' : 'text-[var(--sidebar-muted)] group-hover:text-[var(--text-primary)]' }}"></i>
+                                    <i class="{{ $menu->icon_value }} text-xl {{ $menuActive ? 'text-white' : 'text-[var(--sidebar-muted)] group-hover:text-[var(--text-primary)]' }}"></i>
                                 @else
-                                    <img src="{{ Storage::url($menu->icon_value) }}" class="w-6 h-6 object-contain filter {{ request()->routeIs($menu->url_or_route) ? 'grayscale-0' : 'grayscale group-hover:grayscale-0' }}" alt="">
+                                    <img src="{{ Storage::url($menu->icon_value) }}" class="w-6 h-6 object-contain filter {{ $menuActive ? 'grayscale-0' : 'grayscale group-hover:grayscale-0' }}" alt="">
                                 @endif
 
                                 <span class="font-medium whitespace-nowrap transition-opacity duration-300"

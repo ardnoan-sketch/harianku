@@ -1,12 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-[var(--text-primary)] leading-tight">
-            Portal Utama
-        </h2>
-    </x-slot>
+    <x-ui.page-header title="Portal Utama" :breadcrumbs="['Home']" />
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <x-ui.page-container padding="normal">
             
             <div class="card-theme rounded-xl p-6 mb-6 border bg-[var(--bg-surface)] border-[var(--border-subtle)]">
                 <h3 class="text-xl font-bold text-[var(--text-primary)]">Selamat Datang, {{ $user->name }}! 👋</h3>
@@ -31,10 +26,12 @@
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($modules as $module)
-                        <a href="{{ Route::has($module->entry_route) ? route($module->entry_route) : (Route::has('productivity.' . $module->entry_route) ? route('productivity.' . $module->entry_route) : (Route::has('notes.' . $module->entry_route) ? route('notes.' . $module->entry_route) : '#')) }}" class="block group">
-                            <div class="relative h-full bg-gradient-to-br {{ $module->color_from }} {{ $module->color_to }} rounded-2xl p-8 text-white shadow-lg transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl overflow-hidden">
+                        <a href="{{ Route::has($module->entry_route) ? route($module->entry_route) : (Route::has('productivity.' . $module->entry_route) ? route('productivity.' . $module->entry_route) : (Route::has('notes.' . $module->entry_route) ? route('notes.' . $module->entry_route) : '#')) }}" 
+                           class="block group cursor-pointer"
+                           style="isolation: isolate;">
+                            <div class="relative h-full bg-gradient-to-br {{ $module->color_from }} {{ $module->color_to }} rounded-2xl p-8 text-white shadow-lg transition-transform duration-300 active:scale-95 group-hover:-translate-y-1 group-hover:shadow-xl overflow-hidden">
                                 {{-- Decorative element --}}
-                                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white bg-opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white bg-opacity-10 rounded-full blur-2xl transition-transform duration-500 group-hover:scale-110"></div>
                                 
                                 <div class="relative flex flex-col h-full">
                                     <div class="w-14 h-14 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-6 shadow-inner">
@@ -55,6 +52,5 @@
                     @endforeach
                 </div>
             @endif
-        </div>
-    </div>
+    </x-ui.page-container>
 </x-app-layout>

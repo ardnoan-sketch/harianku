@@ -9,9 +9,9 @@
     $formDesc    = $isEdit ? 'Ubah nama atau tipe kategori.' : 'Buat kategori khusus Anda sendiri untuk membedakan transaksi.';
 @endphp
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Finance', ['label' => 'Kategori', 'url' => route('finance.categories.index')], $breadLast]" />
+    <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Finance', ['label' => 'Kategori', 'url' => route('finance.categories.index')], $breadLast]" />
+
+    <x-ui.page-container narrow padding="normal">
             <x-form :action="$action" :method="$method" cancelRoute="{{ route('finance.categories.index') }}" :submitLabel="$submitLabel" :title="$formTitle" :description="$formDesc">
                 <div class="grid grid-cols-1 gap-6">
                     <div>
@@ -34,7 +34,6 @@
                         @error('type') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                     </div>
                 </div>
-            </x-form>
-        </div>
-    </div>
+        </x-form>
+    </x-ui.page-container>
 </x-app-layout>

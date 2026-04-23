@@ -6,6 +6,7 @@ use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThemeModeController;
 use App\Http\Controllers\ThemePreferenceController;
+use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\Notes\DailyController;
 use App\Http\Controllers\Notes\NoteController;
 use App\Http\Controllers\Notes\QuestController;
@@ -29,11 +30,33 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return view('admin.dashboard');
         })->name('dashboard');
         
-        // Menu Management
-        Route::resource('menus', \App\Http\Controllers\MenuController::class);
-
-        // Module Management
-        Route::resource('modules', \App\Http\Controllers\ModuleController::class);
+        // Unified Management (Modules & Menus)
+        Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
+        
+        // Module routes within management
+        Route::get('/management/modules/create', [ManagementController::class, 'moduleCreate'])->name('management.modules.create');
+        Route::post('/management/modules', [ManagementController::class, 'moduleStore'])->name('management.modules.store');
+        Route::get('/management/modules/{module}/edit', [ManagementController::class, 'moduleEdit'])->name('management.modules.edit');
+        Route::put('/management/modules/{module}', [ManagementController::class, 'moduleUpdate'])->name('management.modules.update');
+        Route::delete('/management/modules/{module}', [ManagementController::class, 'moduleDestroy'])->name('management.modules.destroy');
+        
+        // Menu routes within management
+        Route::get('/management/menus/create', [ManagementController::class, 'menuCreate'])->name('management.menus.create');
+        Route::post('/management/menus', [ManagementController::class, 'menuStore'])->name('management.menus.store');
+        Route::get('/management/menus/{menu}/edit', [ManagementController::class, 'menuEdit'])->name('management.menus.edit');
+        Route::put('/management/menus/{menu}', [ManagementController::class, 'menuUpdate'])->name('management.menus.update');
+        Route::delete('/management/menus/{menu}', [ManagementController::class, 'menuDestroy'])->name('management.menus.destroy');
+        
+        // Role routes within management
+        Route::get('/management/roles/create', [ManagementController::class, 'roleCreate'])->name('management.roles.create');
+        Route::post('/management/roles', [ManagementController::class, 'roleStore'])->name('management.roles.store');
+        Route::get('/management/roles/{role}/edit', [ManagementController::class, 'roleEdit'])->name('management.roles.edit');
+        Route::put('/management/roles/{role}', [ManagementController::class, 'roleUpdate'])->name('management.roles.update');
+        Route::delete('/management/roles/{role}', [ManagementController::class, 'roleDestroy'])->name('management.roles.destroy');
+        
+        // Keep old routes but redirect to new ones (for backward compatibility)
+        Route::get('/menus', function() { return redirect()->route('admin.management.index', ['tab' => 'menus']); })->name('menus.index');
+        Route::get('/modules', function() { return redirect()->route('admin.management.index', ['tab' => 'modules']); })->name('modules.index');
 
         // User Management
         Route::resource('users', \App\Http\Controllers\UserController::class);
@@ -87,6 +110,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::patch('/preferences/theme', [ThemePreferenceController::class, 'update'])->name('preferences.theme');
+
+    // User Preferences (Theme per User)
+    Route::prefix('user/preferences')->name('user.preferences.')->group(function () {
+        Route::patch('/theme', [\App\Http\Controllers\UserPreferenceController::class, 'updateTheme'])->name('theme');
+        Route::patch('/accent-color', [\App\Http\Controllers\UserPreferenceController::class, 'updateAccentColor'])->name('accent-color');
+    });
 
     // Profile
     Route::prefix('profile')->name('profile.')->group(function () {

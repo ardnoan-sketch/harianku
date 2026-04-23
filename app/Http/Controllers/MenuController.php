@@ -39,9 +39,10 @@ class MenuController extends Controller
             $validated['icon_value'] = $path;
         }
 
-        \App\Models\Menu::create($validated);
+        $menu = \App\Models\Menu::create($validated);
 
-        return redirect()->route('admin.menus.index')->with('success', 'Menu created successfully.');
+        return redirect()->route('admin.management.index', ['tab' => 'menus', 'module' => $menu->module])
+            ->with('success', 'Menu created successfully.');
     }
 
     public function edit(\App\Models\Menu $menu)
@@ -66,18 +67,28 @@ class MenuController extends Controller
             'order_no' => 'required|integer'
         ]);
 
-        if ($request->icon_type === 'image' && $request->hasFile('icon_image')) {
-            // Delete old if exists
-            if ($menu->icon_type === 'image' && $menu->icon_value) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($menu->icon_value);
+        // Handle icon value based on type
+        if ($request->icon_type === 'image') {
+            if ($request->hasFile('icon_image')) {
+                // Delete old if exists
+                if ($menu->icon_type === 'image' && $menu->icon_value) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($menu->icon_value);
+                }
+                $path = $request->file('icon_image')->store('menu_icons', 'public');
+                $validated['icon_value'] = $path;
+            } else {
+                // Keep existing image path if no new upload
+                $validated['icon_value'] = $menu->icon_value;
             }
-            $path = $request->file('icon_image')->store('menu_icons', 'public');
-            $validated['icon_value'] = $path;
+        } else {
+            // For class type, use the class name from request
+            $validated['icon_value'] = $request->icon_value;
         }
 
         $menu->update($validated);
 
-        return redirect()->route('admin.menus.index')->with('success', 'Menu updated successfully.');
+        return redirect()->route('admin.management.index', ['tab' => 'menus', 'module' => $menu->module])
+            ->with('success', 'Menu updated successfully.');
     }
 
     public function destroy(\App\Models\Menu $menu)
@@ -85,7 +96,9 @@ class MenuController extends Controller
         if ($menu->icon_type === 'image' && $menu->icon_value) {
             \Illuminate\Support\Facades\Storage::disk('public')->delete($menu->icon_value);
         }
+        $module = $menu->module;
         $menu->delete();
-        return redirect()->route('admin.menus.index')->with('success', 'Menu deleted successfully.');
+        return redirect()->route('admin.management.index', ['tab' => 'menus', 'module' => $module])
+            ->with('success', 'Menu deleted successfully.');
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <x-ui.page-header title="HRD Dashboard" :breadcrumbs="['HRD', 'Dashboard']" />
+    <x-ui.page-header title="HRD Dashboard" :breadcrumbs="['HRD', 'Dashboard']" />
+
+    <x-ui.page-container padding="normal">
 
             <!-- Summary Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -31,7 +31,6 @@
                         <i class="bx bx-money mr-2 text-yellow-500"></i> Penggajian (Payroll)
                     </span>
                 </div>
-            </div>
         </div>
-    </div>
+    </x-ui.page-container>
 </x-app-layout>

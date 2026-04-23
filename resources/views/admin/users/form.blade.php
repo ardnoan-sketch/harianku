@@ -8,9 +8,9 @@
     $formDesc    = $isEdit ? 'Update user information or assign/revoke roles.' : 'Add a new user to the system and assign appropriate roles.';
 @endphp
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Administrator', ['label' => 'Users', 'url' => route('admin.users.index')], $breadLast]" />
+    <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Administrator', ['label' => 'Users', 'url' => route('admin.users.index')], $breadLast]" />
+
+    <x-ui.page-container narrow padding="normal">
             <x-form :action="$action" :method="$method" cancelRoute="{{ route('admin.users.index') }}" :submitLabel="$submitLabel" title="User Profile" :description="$formDesc">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1 md:col-span-2">
@@ -63,7 +63,6 @@
                         </div>
                     </div>
                 </div>
-            </x-form>
-        </div>
-    </div>
+        </x-form>
+    </x-ui.page-container>
 </x-app-layout>

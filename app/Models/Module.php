@@ -11,7 +11,7 @@ class Module extends Model
     protected $fillable = [
         'name', 'label', 'description', 'icon_class',
         'color_from', 'color_to', 'entry_route',
-        'required_role', 'order_no', 'is_active',
+        'required_permission', 'order_no', 'is_active',
     ];
 
     protected $casts = [
@@ -27,8 +27,8 @@ class Module extends Model
             ->orderBy('order_no')
             ->get()
             ->filter(function ($module) use ($user) {
-                if (!$module->required_role) return true;
-                return $user->hasRole($module->required_role) || $user->hasRole('admin');
+                if (!$module->required_permission) return true;
+                return $user->can($module->required_permission) || $user->hasRole('admin');
             });
     }
 }

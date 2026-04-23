@@ -10,9 +10,9 @@
     $defaultType = $isEdit ? $transaction->type : 'expense';
 @endphp
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Finance', ['label' => 'Transaksi', 'url' => route('finance.transactions.index')], $breadLast]" />
+    <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Finance', ['label' => 'Transaksi', 'url' => route('finance.transactions.index')], $breadLast]" />
+
+    <x-ui.page-container narrow padding="normal">
             <x-form :action="$action" :method="$method" cancelRoute="{{ route('finance.transactions.index') }}" :submitLabel="$submitLabel" :title="$formTitle" :description="$formDesc">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1">
@@ -63,9 +63,9 @@
                         @error('description') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
-            </x-form>
-        </div>
-    </div>
+        </x-form>
+    </x-ui.page-container>
+
     <script>
         function filterCategories() {
             const selectedType = document.querySelector('input[name="type"]:checked')?.value;

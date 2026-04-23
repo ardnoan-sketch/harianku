@@ -7,9 +7,9 @@
     $submitLabel = $isEdit ? 'Update Module' : 'Save Module';
 @endphp
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Administrator', ['label' => 'Modules', 'url' => route('admin.modules.index')], $breadLast]" />
+    <x-ui.page-header :title="$pageTitle" :breadcrumbs="['Administrator', ['label' => 'Modules', 'url' => route('admin.modules.index')], $breadLast]" />
+
+    <x-ui.page-container narrow padding="normal">
             <x-form :action="$action" :method="$method" cancelRoute="{{ route('admin.modules.index') }}" :submitLabel="$submitLabel">
                 @if(!$isEdit)
                     <p class="text-sm text-gray-500 mb-6 border-b pb-4">Once saved, the module will appear on the Portal. Make sure its <strong>Entry Route</strong> is registered in <code>routes/web.php</code>.</p>
@@ -46,14 +46,20 @@
                         <input type="text" name="color_to" value="{{ old('color_to', $module->color_to ?? 'to-blue-700') }}" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="to-blue-700">
                     </div>
                     <div class="col-span-1">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Required Role</label>
-                        <select name="required_role" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Required Permission</label>
+                        <select name="required_permission" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option value="">-- Open to All Users --</option>
-                            @foreach($roles as $role)
-                                <option value="{{ $role->name }}" {{ isset($module) && $module->required_role == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>
+                            @foreach($permissions as $module => $modulePermissions)
+                                <optgroup label="{{ ucfirst($module) }}">
+                                    @foreach($modulePermissions as $permission)
+                                        <option value="{{ $permission->name }}" {{ isset($module) && $module->required_permission == $permission->name ? 'selected' : '' }}>
+                                            {{ $permission->label ?? ucwords(str_replace(['.', '_'], ' ', $permission->name)) }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
                             @endforeach
                         </select>
-                        <p class="text-xs text-gray-400 mt-1">Admins always have access to all modules</p>
+                        <p class="text-xs text-gray-400 mt-1">Users need this permission to access. Admins always have access.</p>
                     </div>
                     <div class="col-span-1">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Order</label>
@@ -66,7 +72,6 @@
                         </div>
                     </div>
                 </div>
-            </x-form>
-        </div>
-    </div>
+        </x-form>
+    </x-ui.page-container>
 </x-app-layout>

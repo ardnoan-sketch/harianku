@@ -33,6 +33,8 @@ class User extends Authenticatable
         'email',
         'password',
         'theme_mode_id',
+        'theme',
+        'accent_color',
     ];
 
     /**
